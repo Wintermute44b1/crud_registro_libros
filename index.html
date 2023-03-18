@@ -16,6 +16,72 @@
           </div>
         </nav>
       </div>
+      <div class="contenido"><p>Aqui puedes agregar libros nuevos al catalogo, llena por favor todos los datos necesarios. </p>
+    <p>Puedes tambien borrar y editar lo que necesites.</p></div>
+    <div class="container mt-5">
+        <section class="row">
+          <article class="col">
+            <form>
+              <div class="mb-3">
+                <label for="autor_input" class="form-label">Autor</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="autor_input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="titulo_input" class="form-label">Titulo Del Libro</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="titulo_input"
+                  autocomplete="off"
+                />
+            </div>
+            <div class="mb-3">
+              <label for="titulo_input" class="form-label">Condicion del libro</label>
+              <input
+                type="text"
+                class="form-control"
+                id="condicion_input"
+                autocomplete="off"
+              />
+            </div>
+              </div>
+              
+              <button
+                type="button"
+                class="btn btn-warning"
+                onclick="agregar_libro()"
+              >
+                Agregar
+              </button>
+              <button
+                type="button"
+                class="btn btn-light"
+                onclick="mostrar_catalogo()"
+              >
+                Mostrar
+              </button>
+            </form>
+          </article>
+          <article>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Autor</th>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Condicion</th>
+                </tr>
+              </thead>
+              <tbody id="tabla_resultados"></tbody>
+            </table>
+          </article>
+        </section>
+      </div>
 </body>
+<script src="./js/codigo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </html>

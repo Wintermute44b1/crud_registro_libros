@@ -1,3 +1,7 @@
 body{
     background-color: rgb(110, 177, 177);
 }
+.contenido {
+    background-color: antiquewhite;
+    font-size: 15px;
+}

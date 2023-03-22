@@ -1,8 +1,7 @@
 const autor = document.getElementById("autorInput");
 const titulo = document.getElementById("tituloInput");
-const condicion = document.getElementById("condicionInput");
-const libros = JSON.parse(localStorage.getItem("libros")) || [];
-const tabla_resultados = document.getElementById("tabla_resultados");
+const libros = JSON.parse(localStorage.getItem("libros")) ||  [];
+const cuerpoTabla = document.getElementById("cuerpoTabla");
 
 const agregar = () => {
   const libro = {
@@ -18,15 +17,16 @@ const agregar = () => {
 };
 
 const mostrar_libros = () => {
-  tabla_resultados.innerHTML = "";
+  cuerpoTabla.innerHTML = "";
   libros.forEach((libro) => {
-    tabla_resultados.innerHTML += `<tr>
+    cuerpoTabla.innerHTML += `<tr>
         <th scope="row">${libro.id}</th>
         <td>${libro.autor}</td>
         <td>${libro.titulo}</td>
-        <td>${libro.condicion}</td>
         <td>
-        <button>
+        <button
+          type="button"
+          class="btn btn-danger"
           onclick="eliminarLibros('${libro.id}')"
         >
           Eliminar
@@ -34,3 +34,10 @@ const mostrar_libros = () => {
     </tr>`;
   });
 };
+
+const borrar = function borracion(libro) {
+  let index = usuario.findIndex (usuario => usuario.nombre == usuario);
+  mostrarUsuarios.splice(idex,1);
+  mostrarUsuarios();
+  
+}

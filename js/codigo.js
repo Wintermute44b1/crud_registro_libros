@@ -3,23 +3,24 @@ const autor = document.getElementById("autor_input");
 const condicion = document.getElementById("condicion_input");
 const informacion = JSON.parse(localStorage.getItem("informacion")) || [];
 const tabla_resultados = document.getElementById("tabla_resultados");
+let editando = false;
+let libro_editado = null;
 
-
-const agregar_libro= () => {
+const agregar_libro = () => {
   const libro = {
     id: crypto.randomUUID(),
     titulo: titulo.value,
     autor: autor.value,
-    condicion:condicion.value,
+    condicion: condicion.value,
   };
 
-  libros.push(libros);
+  informacion.push(libro);
 
-  localStorage.setItem("libros", JSON.stringify(libros));
+  localStorage.setItem("informacion", JSON.stringify(informacion));
   mostrar_libros();
 };
 
-const mostrar_libros= () => {
+const mostrar_libros = () => {
   tabla_resultados.innerHTML = "";
   informacion.forEach((libro) => {
     tabla_resultados.innerHTML += `<tr>
@@ -50,9 +51,16 @@ const mostrar_libros= () => {
 };
 
 const eliminar_libro = (id) => {
-  const libro= informacion.find((libro) => libro.id === id)
-  const index = informacion.indexOf(libro)
-  informacion.splice(index, 1)
+  const index = informacion.findIndex((libro) => libro.id === id);
+  informacion.splice(index, 1);
   localStorage.setItem("informacion", JSON.stringify(informacion));
   mostrar_libros();
+};
+
+const editar_libro = (id) => {
+  editando = true;
+  libro_editado = informacion.find((libro) => libro.id === id);
+  titulo.value = libro_editado.titulo;
+  autor.value = libro_editado.autor;
+  condicion.value = libro_editado.condicion;
 };

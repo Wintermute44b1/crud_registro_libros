@@ -1,43 +1,58 @@
-const autor = document.getElementById("autorInput");
-const titulo = document.getElementById("tituloInput");
-const libros = JSON.parse(localStorage.getItem("libros")) ||  [];
-const cuerpoTabla = document.getElementById("cuerpoTabla");
+const titulo = document.getElementById("titulo_input");
+const autor = document.getElementById("autor_input");
+const condicion = document.getElementById("condicion_input");
+const informacion = JSON.parse(localStorage.getItem("informacion")) || [];
+const tabla_resultados = document.getElementById("tabla_resultados");
 
-const agregar = () => {
+
+const agregar_libro= () => {
   const libro = {
     id: crypto.randomUUID(),
-    autor: autor.value,
     titulo: titulo.value,
+    autor: autor.value,
+    condicion:condicion.value,
   };
 
-  libros.push(libro);
+  libros.push(libros);
 
   localStorage.setItem("libros", JSON.stringify(libros));
   mostrar_libros();
 };
 
-const mostrar_libros = () => {
-  cuerpoTabla.innerHTML = "";
-  libros.forEach((libro) => {
-    cuerpoTabla.innerHTML += `<tr>
+const mostrar_libros= () => {
+  tabla_resultados.innerHTML = "";
+  informacion.forEach((libro) => {
+    tabla_resultados.innerHTML += `<tr>
         <th scope="row">${libro.id}</th>
-        <td>${libro.autor}</td>
         <td>${libro.titulo}</td>
+        <td>${libro.autor}</td>
+        <td>${libro.condicion}</td>
         <td>
         <button
           type="button"
           class="btn btn-danger"
-          onclick="eliminarLibros('${libro.id}')"
+          onclick="eliminar_libro('${libro.id}')"
         >
           Eliminar
-        </button><td>
+        </button>
+        <td>
+        <td>
+        <button
+          type="button"
+          class="btn btn-warning"
+          onclick="editar_libro('${libro.id}')"
+        >
+          Editar
+        </button>
+        </td>
     </tr>`;
   });
 };
 
-const borrar = function borracion(libro) {
-  let index = usuario.findIndex (usuario => usuario.nombre == usuario);
-  mostrarUsuarios.splice(idex,1);
-  mostrarUsuarios();
-  
-}
+const eliminar_libro = (id) => {
+  const libro= informacion.find((libro) => libro.id === id)
+  const index = informacion.indexOf(libro)
+  informacion.splice(index, 1)
+  localStorage.setItem("informacion", JSON.stringify(informacion));
+  mostrar_libros();
+};
